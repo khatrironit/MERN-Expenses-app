@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     background:'transparent',
   },
   borderBottom : {
-    borderBottom : '1px solid grey',
+    borderBottom : '1px solid #b07ff6',
     marginBottom : '8vh'
   },
   title:{
@@ -36,7 +36,7 @@ function App() {
   return (
     <div className={classes.root}>
       <br /><br />
-      <Grid container spacing={3} justify="center">
+      <Grid container spacing={1} justify="center">
 
           <Grid item container  xs={11} className = {classes.borderBottom}>
 
@@ -54,11 +54,13 @@ function App() {
               </Grid>
 
           </Grid>
-          <Grid item xs={5}>
-            <Paper className={classes.paper}><AddForm /></Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}></Paper>
+          <Grid item container spacing={10} justify="center">
+            <Grid item xs={4}>
+              <Paper className={classes.paper}><AddForm /></Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper className={classes.paper}></Paper>
+            </Grid>
           </Grid>
           
       </Grid>

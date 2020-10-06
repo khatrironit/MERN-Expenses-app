@@ -5,6 +5,20 @@ body {
 }
 .input{
   background-color: transparent;
+  border-radius: 5px;
+  width : 80%;
+  border : 1px solid #b07ff6;
+  padding : 1.2vh 1vw;
+  color : white;
+}
+.error{
+  color:pink;
+}
+.addbutton{
+  padding : 1vh 2vw;
+  border-radius: 15px;
+  background-color: #03dac5;
+  border : none;
 }
 
 
