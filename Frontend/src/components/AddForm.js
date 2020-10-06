@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
-
+import axios from 'axios'
 export default class AddForm extends Component {
     constructor(){
         super()
@@ -16,7 +16,7 @@ export default class AddForm extends Component {
         this.setState({[key] : e.target.value});
     }
     onFocus = (e,key) =>{
-        
+        this.setState({errorMessage : "",[key]:""})
     }
     addExpense = () => {
         console.log(this.state)
@@ -32,21 +32,21 @@ export default class AddForm extends Component {
                     {this.state.errorMessage === ""?"":<p className = "error"><small>{this.state.errorMessage}</small></p>}
                 </Grid>
                 <Grid item xs = {10}>
-                    <input className = 'input' type = 'text' placeholder = 'Title' onFocus = {(e)=>this.onFocus(e,"title")} onChange = {(e)=>this.onChangeHandler(e,"title")}></input>
+                    <input className = 'input' type = 'text' placeholder = 'Title' value = {this.state.title} onFocus = {(e)=>this.onFocus(e,"title")} onChange = {(e)=>this.onChangeHandler(e,"title")}></input>
                 </Grid>
                 <Grid item xs = {10}>
-                    <input className = 'input' type = 'number' placeholder = 'Amount' onFocus = {(e)=>this.onFocus(e,"amount")} onChange = {(e)=>this.onChangeHandler(e,"amount")}></input>
+                    <input className = 'input' type = 'number' placeholder = 'Amount' value = {this.state.amount}onFocus = {(e)=>this.onFocus(e,"amount")} onChange = {(e)=>this.onChangeHandler(e,"amount")}></input>
                 </Grid>
                 <Grid item xs = {10}>
-                    <input className = 'input' type = 'text' placeholder = 'Note' onFocus = {(e)=>this.onFocus(e,"note")} onChange = {(e)=>this.onChangeHandler(e,"note")}></input>
+                    <input className = 'input' type = 'text' placeholder = 'Note' value = {this.state.note} onFocus = {(e)=>this.onFocus(e,"note")} onChange = {(e)=>this.onChangeHandler(e,"note")}></input>
                 </Grid>
                 <Grid item xs = {10}>
-                    <input className = 'input' type = 'text' placeholder = 'Date' onFocus = {(e)=>this.onFocus(e,"date")} onChange = {(e)=>this.onChangeHandler(e,"date")}></input>
+                    <input className = 'input' type = 'text' placeholder = 'Date' value = {this.state.date} onFocus = {(e)=>this.onFocus(e,"date")} onChange = {(e)=>this.onChangeHandler(e,"date")}></input>
                 </Grid>
                 <Grid item xs = {10}></Grid>
                 {/* <Grid item xs = {10}></Grid> */}
                 <Grid item xs = {10}>
-                    <button className = "addbutton" onClick = {this.addExpense}><big>+ </big> &nbsp;&nbsp;&nbsp;&nbsp;Add Expense</button>
+                    <button className = "addbutton" onClick = {this.addExpense} ><big>+ </big> &nbsp;&nbsp;&nbsp;&nbsp;Add Expense</button>
                 </Grid>
             </Grid>
         )

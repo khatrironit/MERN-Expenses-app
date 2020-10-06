@@ -3,6 +3,29 @@ body {
   background-color: #6200ee;
   height: 100vh;
 }
+.title{
+  color : white;
+  padding-bottom:0px;
+  margin-bottom:0px;
+  font-family:sans-serif;
+}
+.total{
+  color : white;
+  padding-bottom:0px;
+  margin-bottom:0px;
+  font-weight : lighter;
+}
+.price{
+  color : white;
+  padding-bottom:0px;
+  margin-bottom :0px;
+  margin-top:12px;
+  font-weight : lighter;
+}
+.borderBottom{
+  border-bottom : 1px solid #b07ff6;
+  margin-bottom : 8vh;
+}
 .input{
   background-color: transparent;
   border-radius: 5px;
@@ -19,6 +42,36 @@ body {
   border-radius: 15px;
   background-color: #03dac5;
   border : none;
+}
+.pd-mg-0{
+  padding : 0px;
+  margin : 0px;
+}
+.card-paper{
+  padding:1.5vh 0vh;
+}
+.card-date{
+  text-align: left;
+  margin-left : 2vw;
+  font-size: 0.6em;
+  color : lightslategrey;
+  font-weight: bold;
+}
+.card-title{
+  text-align: left;
+  margin-left : 2vw;
+  color : #7e2df1;
+}
+.card-note{
+  text-align: left;
+  margin-left : 2vw;
+  font-size: smaller;
+  color : lightslategrey;
+  font-size: 0.6em;
+
+}
+.card-amount{
+
 }
 
 
