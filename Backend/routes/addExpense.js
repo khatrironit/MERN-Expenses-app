@@ -12,7 +12,7 @@ router.post('/',(req,res,next)=>{
         note : data.note,
         date : data.date
     })
-    expense.save().then(res=>{
+    expense.save().then(resp=>{
         const response = {
             "status" : 200,
             "message" : "Expense added successfully"

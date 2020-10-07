@@ -38,6 +38,7 @@ app.use('/',fetchallRoute)
 app.use('/addexpense',addRoute)
 app.use('/update',updateRoute)
 app.use('/delete',deleteRoute)
+
 //middleware to handle api requests to invalid routes.
 app.use((req,res,next)=>{
     const error = new Error('Page Not Found!!')
@@ -54,13 +55,6 @@ app.use((error,req,res,next)=>{
         }
     })
 })
-
-
-
-
-
-
-
 
 
 module.exports = app
