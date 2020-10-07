@@ -8,4 +8,4 @@ const expenseSchema = mongoose.Schema({
     date : String
 })
 
-module.exports = mongoose.model('Expenses',expenseSchema)
+module.exports = mongoose.model('Expense',expenseSchema)
