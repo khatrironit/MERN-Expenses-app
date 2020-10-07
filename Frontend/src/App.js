@@ -2,12 +2,18 @@ import React ,{ useState, useEffect }from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
+import 'rc-notification/assets/index.css';
+import Notification from 'rc-notification';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios'
 
 import AddForm from './components/AddForm';
 import ExpenseList from './components/ExpenseList'
+
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,9 +50,17 @@ function App() {
       setError("Something Went Wrong.")
     })
   }
-
+  const notify = (message) => {
+    notification.notice({
+      content: <span>{message}</span>,
+      onClose() {
+        console.log('closed');
+      },
+    });
+  }
   useEffect(() => {
     getexpenses()
+    notify("Welcome to Expense Tracker App")
   }, [])
  
   return (
@@ -72,10 +86,10 @@ function App() {
           </Grid>
           <Grid item container spacing={10} justify="center">
             <Grid item xs={11} sm = {11} md = {4} lg = {4} xl = {4}>
-              <Paper className={classes.paper}><AddForm getExpenses = {getexpenses} editData = {editData} /></Paper>
+              <Paper className={classes.paper}><AddForm getExpenses = {getexpenses} editData = {editData} notify = {notify}/></Paper>
             </Grid>
             <Grid item xs={11} sm = {11} md = {6} lg = {6} xl = {6}>
-              <Paper className={classes.paper}><ExpenseList expenses = {expenses} getExpenses = {getexpenses} setEditData = {setEditData}/></Paper>
+              <Paper className={classes.paper}><ExpenseList expenses = {expenses} getExpenses = {getexpenses} setEditData = {setEditData} notify = {notify}/></Paper>
             </Grid>
           </Grid>
           
