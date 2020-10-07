@@ -23,7 +23,20 @@ export default class AddForm extends Component {
         const {title, amount, note, date} = this.state;
         if(title === "" || amount === "" || note === "" || date === ""){
             this.setState({errorMessage : "All Fields Are Mandatory."})
+        }else{
+            axios.post('http://localhost:8000/addexpense',{
+                "title" : title,
+                "amount" : amount,
+                "note" : note,
+                "date":date 
+            }).then(res=>{
+                console.log(res)
+                this.props.getExpenses()
+            }).catch(err=>{
+                console.log(err)
+            })
         }
+        this.setState({title:"", amount:"", note:"", date:""})
     }
     render() {
         return (
@@ -44,7 +57,6 @@ export default class AddForm extends Component {
                     <input className = 'input' type = 'text' placeholder = 'Date' value = {this.state.date} onFocus = {(e)=>this.onFocus(e,"date")} onChange = {(e)=>this.onChangeHandler(e,"date")}></input>
                 </Grid>
                 <Grid item xs = {10}></Grid>
-                {/* <Grid item xs = {10}></Grid> */}
                 <Grid item xs = {10}>
                     <button className = "addbutton" onClick = {this.addExpense} ><big>+ </big> &nbsp;&nbsp;&nbsp;&nbsp;Add Expense</button>
                 </Grid>

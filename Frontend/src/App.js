@@ -1,12 +1,14 @@
-import React from 'react';
+import React ,{ useState, useEffect }from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import axios from 'axios'
 
 import AddForm from './components/AddForm';
 import ExpenseList from './components/ExpenseList'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,12 +27,27 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const sample = [{
-    "title" : "Ronit",
-    "amount" : "1",
-    "note" : "nothing",
-    "date" : "01.10.2020"
-  }]
+  const [total, setTotal] = useState(0)
+  const [expenses, setExpenses] = useState([])
+  const [error, setError] = useState("")
+
+  const getexpenses = () => {
+    axios.get('http://localhost:8000/').then(res=>{
+      setExpenses(res.data)
+      let total = 0
+      res.data.map(x=>{
+        total = total+Number(x.amount)
+      })
+      setTotal(total)
+    }).catch(err=>{
+      setError("Something Went Wrong.")
+    })
+  }
+
+  useEffect(() => {
+    getexpenses()
+  }, [])
+ 
   return (
     <div className={classes.root}>
       <br /><br />
@@ -47,17 +64,17 @@ function App() {
                   <h2 className = "total">Total </h2>
                 </Grid>
                 <Grid item >
-                  <h1 className = "price"> 500</h1>
+                  <h1 className = "price">{total}</h1>
                 </Grid>
               </Grid>
 
           </Grid>
           <Grid item container spacing={10} justify="center">
-            <Grid item xs={4}>
-              <Paper className={classes.paper}><AddForm /></Paper>
+            <Grid item xs={11} sm = {11} md = {4} lg = {4} xl = {4}>
+              <Paper className={classes.paper}><AddForm getExpenses = {getexpenses}/></Paper>
             </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}><ExpenseList expenses = {sample}/></Paper>
+            <Grid item xs={11} sm = {11} md = {6} lg = {6} xl = {6}>
+              <Paper className={classes.paper}><ExpenseList expenses = {expenses} getExpenses = {getexpenses}/></Paper>
             </Grid>
           </Grid>
           
