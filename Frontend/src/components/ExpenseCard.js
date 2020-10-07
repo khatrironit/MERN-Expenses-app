@@ -22,8 +22,8 @@ export default class ExpenseCard extends Component {
         const { data ,refreshExpenses, setEditData} = this.props
         return (
             <Grid item container xs = {11}  justify="center" alignItems="center">
-                <Grid item xs = {1} ><p className = "card-icons" onClick = {()=>setEditData(data)}><FaPencilAlt /><br /> <small>Edit</small></p></Grid>
-                <Grid item xs = {10}>
+                <Grid item xs = {2} ><p className = "card-icons" onClick = {()=>setEditData(data)}><FaPencilAlt /><br /> <small>Edit</small></p></Grid>
+                <Grid item xs = {8}>
                     <Paper className = "card-paper">
                         <Grid Container >
                             <Grid item xs = {12} ><p className = "pd-mg-0 card-date">{data.date}</p></Grid>
@@ -35,7 +35,7 @@ export default class ExpenseCard extends Component {
                         </Grid>
                     </Paper>
                 </Grid>
-                <Grid item xs = {1} ><p className = "card-icons" onClick = {this.deleteExpense}><FaTimesCircle /><br /> <small>Remove</small></p></Grid>
+                <Grid item xs = {2} ><p className = "card-icons" onClick = {this.deleteExpense}><FaTimesCircle /><br /> <small>Remove</small></p></Grid>
             </Grid>
         )
     }

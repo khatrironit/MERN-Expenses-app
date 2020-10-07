@@ -1,5 +1,4 @@
 import React ,{ useState, useEffect }from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import 'rc-notification/assets/index.css';
@@ -24,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: 'white',
     background:'transparent',
+    maxHeight : '70vh',
+    overflow : 'auto',
   },
   borderBottom : {
     borderBottom : '1px solid #b07ff6',marginBottom : '8vh'
@@ -76,7 +77,7 @@ function App() {
               <Grid item lg xl md xs sm></Grid>
               <Grid item container lg = {3} xl = {3} md = {3} xs = {11} sm = {5} spacing={3} justify="center">
                 <Grid item  >
-                  <h2 className = "total">Total </h2>
+                  <h2 className = "total" >Total </h2>
                 </Grid>
                 <Grid item >
                   <h1 className = "price">{total}</h1>
