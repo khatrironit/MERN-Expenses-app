@@ -29,6 +29,7 @@ function App() {
   const classes = useStyles();
   const [total, setTotal] = useState(0)
   const [expenses, setExpenses] = useState([])
+  const [editData, setEditData] = useState({})
   const [error, setError] = useState("")
 
   const getexpenses = () => {
@@ -71,10 +72,10 @@ function App() {
           </Grid>
           <Grid item container spacing={10} justify="center">
             <Grid item xs={11} sm = {11} md = {4} lg = {4} xl = {4}>
-              <Paper className={classes.paper}><AddForm getExpenses = {getexpenses}/></Paper>
+              <Paper className={classes.paper}><AddForm getExpenses = {getexpenses} editData = {editData} /></Paper>
             </Grid>
             <Grid item xs={11} sm = {11} md = {6} lg = {6} xl = {6}>
-              <Paper className={classes.paper}><ExpenseList expenses = {expenses} getExpenses = {getexpenses}/></Paper>
+              <Paper className={classes.paper}><ExpenseList expenses = {expenses} getExpenses = {getexpenses} setEditData = {setEditData}/></Paper>
             </Grid>
           </Grid>
           

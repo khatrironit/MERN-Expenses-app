@@ -18,10 +18,10 @@ export default class ExpenseCard extends Component {
         })
     }
     render() {
-        const { data ,refreshExpenses} = this.props
+        const { data ,refreshExpenses, setEditData} = this.props
         return (
             <Grid item container xs = {11}  justify="center" alignItems="center">
-                <Grid item xs = {1} ><p className = "card-icons" onClick = {()=>console.log("clicked")}><FaPencilAlt /><br /> <small>Edit</small></p></Grid>
+                <Grid item xs = {1} ><p className = "card-icons" onClick = {()=>setEditData(data)}><FaPencilAlt /><br /> <small>Edit</small></p></Grid>
                 <Grid item xs = {10}>
                     <Paper className = "card-paper">
                         <Grid Container >

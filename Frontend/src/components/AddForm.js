@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
+import { FaPencilAlt } from 'react-icons/fa'
 import axios from 'axios'
 export default class AddForm extends Component {
     constructor(){
@@ -9,9 +10,21 @@ export default class AddForm extends Component {
             amount : "",
             note : "",
             date : "",
-            errorMessage : ""
+            errorMessage : "",
+            editing : false
         }
     }
+    componentDidUpdate(prevProps) {
+        if (prevProps.editData !== this.props.editData) {
+          this.setState({
+              editing : true,
+              title : this.props.editData.title,
+              amount : this.props.editData.amount,
+              note : this.props.editData.note,
+              date : this.props.editData.date,
+          })
+        }
+      }
     onChangeHandler = (e,key)=>{
         this.setState({[key] : e.target.value});
     }
@@ -19,7 +32,6 @@ export default class AddForm extends Component {
         this.setState({errorMessage : "",[key]:""})
     }
     addExpense = () => {
-        console.log(this.state)
         const {title, amount, note, date} = this.state;
         if(title === "" || amount === "" || note === "" || date === ""){
             this.setState({errorMessage : "All Fields Are Mandatory."})
@@ -37,6 +49,26 @@ export default class AddForm extends Component {
             })
         }
         this.setState({title:"", amount:"", note:"", date:""})
+    }
+    editExpense = () => {
+        const {title, amount, note, date} = this.state;
+        if(title === "" || amount === "" || note === "" || date === ""){
+            this.setState({errorMessage : "All Fields Are Mandatory."})
+        }else{
+            axios.post('http://localhost:8000/update',{
+                "id" : this.props.editData.id,
+                "title" : title,
+                "amount" : amount,
+                "note" : note,
+                "date":date 
+            }).then(res=>{
+                console.log(res)
+                this.props.getExpenses()
+            }).catch(err=>{
+                console.log(err)
+            })
+        }
+        this.setState({title:"", amount:"", note:"", date:"",editing : false})
     }
     render() {
         return (
@@ -58,7 +90,10 @@ export default class AddForm extends Component {
                 </Grid>
                 <Grid item xs = {10}></Grid>
                 <Grid item xs = {10}>
-                    <button className = "addbutton" onClick = {this.addExpense} ><big>+ </big> &nbsp;&nbsp;&nbsp;&nbsp;Add Expense</button>
+                    {!this.state.editing ? 
+                        <button className = "addbutton" onClick = {this.addExpense} ><big>+ </big> &nbsp;&nbsp;&nbsp;&nbsp;Add Expense</button>
+                        : <button className = "addbutton" onClick = {this.editExpense} ><big> <FaPencilAlt /></big> &nbsp;&nbsp;&nbsp;&nbsp;Edit Expense</button>
+                    }
                 </Grid>
             </Grid>
         )

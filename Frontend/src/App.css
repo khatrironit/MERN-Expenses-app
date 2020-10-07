@@ -73,6 +73,7 @@ body {
 .card-icons{
   color : #b07ff6;
   font-size: x-small;
+  cursor: pointer;
 }
 
 
