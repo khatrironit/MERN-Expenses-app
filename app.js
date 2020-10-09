@@ -20,6 +20,9 @@ app.use(logger('dev'))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
+//deployment
+app.use(express.static('client/build'));
+
 
 //handling cors error
 app.use((req,res,next)=>{
