@@ -40,7 +40,7 @@ function App() {
   const [error, setError] = useState("")
 
   const getexpenses = () => {
-    axios.get('http://localhost:8000/').then(res=>{
+    axios.get('/').then(res=>{
       setExpenses(res.data)
       let total = 0
       res.data.map(x=>{

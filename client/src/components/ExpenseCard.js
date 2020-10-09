@@ -8,7 +8,7 @@ import '../App.css'
 export default class ExpenseCard extends Component {
     deleteExpense = () =>{
         const { data ,refreshExpenses, notify } = this.props
-        axios.post('http://localhost:8000/delete',{
+        axios.post('/delete',{
             "id" : data.id
         }).then(res=>{
             console.log(res);

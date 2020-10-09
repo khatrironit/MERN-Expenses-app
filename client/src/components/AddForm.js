@@ -40,7 +40,7 @@ export default class AddForm extends Component {
         if(title === "" || amount === "" || note === "" || date === ""){
             this.setState({errorMessage : "All Fields Are Mandatory."})
         }else{
-            axios.post('http://localhost:8000/addexpense',{
+            axios.post('/addexpense',{
                 "title" : title,
                 "amount" : amount,
                 "note" : note,
@@ -60,7 +60,7 @@ export default class AddForm extends Component {
         if(title === "" || amount === "" || note === "" || date === ""){
             this.setState({errorMessage : "All Fields Are Mandatory."})
         }else{
-            axios.post('http://localhost:8000/update',{
+            axios.post('/update',{
                 "id" : this.props.editData.id,
                 "title" : title,
                 "amount" : amount,
